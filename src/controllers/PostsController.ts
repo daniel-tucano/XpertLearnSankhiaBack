@@ -1,7 +1,6 @@
 import Post from '../models/Posts'
 import { Request, Response } from 'express'
 import { paginate } from '../functions/paginate'
-import User from '../models/Users'
 
 module.exports = {
     async index(req: Request, res: Response) {
