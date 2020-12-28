@@ -24,4 +24,4 @@ const CommentMongoSchema = new mongoose.Schema(
     { typeKey: '$type' }
 )
 
-export default mongoose.model<CommentType>('Post', CommentMongoSchema)
+export default mongoose.model<CommentType>('Comment', CommentMongoSchema)

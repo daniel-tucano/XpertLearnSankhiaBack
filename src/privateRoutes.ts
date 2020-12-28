@@ -2,19 +2,19 @@ import express from 'express'
 import multerImg from './functions/multerImg'
 const privateRoutes = express.Router()
 
-const SongController = require('./controllers/SongController')
-const PlaylistController = require('./controllers/PlaylistController')
+const CommentsController = require('./controllers/CommentsController')
+const PostsController = require('./controllers/PostsController')
 const UserController = require('./controllers/UserController')
 
-// Songs Private Routes
-privateRoutes.post('/songs', SongController.store)
-privateRoutes.put('/songs/:id', SongController.update)
-privateRoutes.delete('/songs/:id', SongController.destroy)
+// Comments Private Routes
+privateRoutes.post('/comments', CommentsController.store)
+privateRoutes.put('/comments/:id', CommentsController.update)
+privateRoutes.delete('/comments/:id', CommentsController.destroy)
 
-// Playlists Private Routes
-privateRoutes.post('/playlists', PlaylistController.store)
-privateRoutes.put('/playlists/:id', PlaylistController.update)
-privateRoutes.delete('/playlists/:id', PlaylistController.destroy)
+// Posts Private Routes
+privateRoutes.post('/posts', PostsController.store)
+privateRoutes.put('/posts/:id', PostsController.update)
+privateRoutes.delete('/posts/:id', PostsController.destroy)
 
 // Users Private Routes
 privateRoutes.put('/users/:id', UserController.update)
