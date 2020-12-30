@@ -57,6 +57,30 @@ module.exports = {
         return res.json(post)
     },
 
+    async likePost(req: Request, res: Response) {
+        const { id: postId } = req.params
+
+        const { state = 'true' } = req.query
+
+        if (!postId) return res.status(400).send('postId must be provided"')
+
+        let updatedPost
+
+        if (state === 'true') {
+            updatedPost = Post.findByIdAndUpdate(postId, {
+                $addToSet: { likes: { creatorID: req.decodedIdToken.uid } },
+            })
+        } else if (state === 'false') {
+            updatedPost = Post.findByIdAndUpdate(postId, {
+                $pull: { likes: { creatorID: req.decodedIdToken.uid } },
+            })
+        } else {
+            return res.status(400).send('state must be true or false')
+        }
+
+        return res.status(200).send(updatedPost)
+    },
+
     async destroy(req: Request, res: Response) {
         const postToDelete = await Post.findById(req.params.id)
 

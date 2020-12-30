@@ -15,6 +15,7 @@ privateRoutes.delete('/comments/:id', CommentsController.destroy)
 privateRoutes.post('/posts', PostsController.store)
 privateRoutes.put('/posts/:id', PostsController.update)
 privateRoutes.delete('/posts/:id', PostsController.destroy)
+privateRoutes.get('post/likePost/:id', PostsController.likePost)
 
 // Users Private Routes
 privateRoutes.put('/users/:id', UserController.update)
