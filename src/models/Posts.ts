@@ -1,7 +1,7 @@
 import mongoose, { Document } from 'mongoose'
 
 export interface PostType extends Document {
-    likes: { creatorID: string }[]
+    likes: { creatorUid: string }[]
     creatorUid: string
     content: { type: 'video' | 'image'; payload: string[] }
     description: string

@@ -66,14 +66,25 @@ module.exports = {
 
         let updatedPost
 
+        console.log(state)
         if (state === 'true') {
-            updatedPost = Post.findByIdAndUpdate(postId, {
-                $addToSet: { likes: { creatorID: req.decodedIdToken.uid } },
-            })
+            updatedPost = await Post.findByIdAndUpdate(
+                postId,
+                {
+                    $addToSet: {
+                        likes: { creatorUid: req.decodedIdToken.uid },
+                    },
+                },
+                { new: true, useFindAndModify: false, lean: true }
+            )
         } else if (state === 'false') {
-            updatedPost = Post.findByIdAndUpdate(postId, {
-                $pull: { likes: { creatorID: req.decodedIdToken.uid } },
-            })
+            updatedPost = await Post.findByIdAndUpdate(
+                postId,
+                {
+                    $pull: { likes: { creatorUid: req.decodedIdToken.uid } },
+                },
+                { new: true, useFindAndModify: false, lean: true }
+            )
         } else {
             return res.status(400).send('state must be true or false')
         }
