@@ -1,4 +1,4 @@
-import Post from '../models/Posts'
+import Post, { PostType } from '../models/Posts'
 import { Request, Response } from 'express'
 import { paginate } from '../functions/paginate'
 
@@ -31,7 +31,9 @@ module.exports = {
         return res.json(post)
     },
 
-    async store(req: Request, res: Response) {
+    async store(req: Request<any, any, PostType>, res: Response) {
+        req.body.likes = []
+        req.body.creatorUid = req.decodedIdToken.uid
         const post = await Post.create({ ...req.body, createdAt: new Date() })
 
         return res.json(post)
