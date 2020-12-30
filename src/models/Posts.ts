@@ -23,7 +23,7 @@ const PostMongoSchema = new mongoose.Schema(
             },
         },
         description: {
-            type: String,
+            $type: String,
             required: true,
         },
         createdAt: Date,
