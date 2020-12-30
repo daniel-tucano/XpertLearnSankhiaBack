@@ -1,55 +1,55 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: xpertsankhia-backend
-  labels:
     name: xpertsankhia-backend
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      name: xpertsankhia-backend
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-    type: RollingUpdate
-  template:
-    metadata:
-      labels:
+    labels:
         name: xpertsankhia-backend
-    spec:
-      containers:
-      - image: registry.hub.docker.com/daanrsantiago/xpertsankhia-backend:latest
-        imagePullPolicy: Always
-        name: xpertsankhia-backend-container
-        ports:
-        - containerPort: 80
-          name: http
-          protocol: TCP
-        volumeMounts:
-            - name: xpertsankhia-backend-secret-files
-              mountPath: /app/firebase
-        env:
-          - name: MONGODB_USER
-            valueFrom:
-              secretKeyRef:
-                name: xpert-sankhia-mongo-secret
-                key: username
-          - name: MONGODB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: xpert-sankhia-mongo-secret
-                key: password
-          - name: NODE_ENV
-            value: production
-          - name: NODE_PORT
-            value: '80'
-          - name: MONGO_URL
-            value: mongodb+srv://xpertsankhiaheadlessservice.default.svc.cluster.local/spotifyClone?ssl=false&replicaSet=rs0&readPreference=secondaryPreferred&authSource=admin
-          # - name: GOOGLE_APPLICATION_CREDENTIALS
-          #   value: ./firebase/spotify-clone-mobile-firebase-adminsdk-ne2jo-2225883157.json
-      volumes:
-        - name: xpertsankhia-backend-secret-files
-          secret:
-            secretName: spotify-clone-mobile-secret
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            name: xpertsankhia-backend
+    strategy:
+        rollingUpdate:
+            maxSurge: 1
+            maxUnavailable: 1
+        type: RollingUpdate
+    template:
+        metadata:
+            labels:
+                name: xpertsankhia-backend
+        spec:
+            containers:
+                - image: registry.hub.docker.com/daanrsantiago/xpertsankhia-backend:latest
+                  imagePullPolicy: Always
+                  name: xpertsankhia-backend-container
+                  ports:
+                      - containerPort: 80
+                        name: http
+                        protocol: TCP
+                  volumeMounts:
+                      - name: xpertsankhia-backend-secret-files
+                        mountPath: /app/firebase
+                  env:
+                      - name: MONGODB_USER
+                        valueFrom:
+                            secretKeyRef:
+                                name: xpert-sankhia-mongo-secret
+                                key: username
+                      - name: MONGODB_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: xpert-sankhia-mongo-secret
+                                key: password
+                      - name: NODE_ENV
+                        value: production
+                      - name: NODE_PORT
+                        value: '80'
+                      - name: MONGO_URL
+                        value: mongodb+srv://xpertsankhiaheadlessservice.default.svc.cluster.local/xpertSankhia?ssl=false&replicaSet=rs0&readPreference=secondaryPreferred&authSource=admin
+                      - name: GOOGLE_APPLICATION_CREDENTIALS
+                        value: ./firebase/xpert-sankhia-firebase-adminsdk-84shj-290716f313.json
+            volumes:
+                - name: xpertsankhia-backend-secret-files
+                  secret:
+                      secretName: xpert-sankhia-backend-secret

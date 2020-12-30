@@ -1,4 +1,4 @@
-import User from '../models/Users'
+import User, { UserType } from '../models/Users'
 import admin from 'firebase-admin'
 import fs from 'fs'
 import { Request, Response } from 'express'
@@ -37,7 +37,8 @@ module.exports = {
         return res.json(user)
     },
 
-    async store(req: Request, res: Response) {
+    async store(req: Request<any, any, UserType>, res: Response) {
+        req.body.birthDate = new Date(req.body.birthDate)
         const user = await User.create({ ...req.body, joinDate: new Date() })
 
         return res.json(user)

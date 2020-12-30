@@ -1,5 +1,5 @@
 xpert-sankhia-mongo-secret.yaml
-xpert-sankhia-secret.yaml
+xpert-sankhia-backend-secret.yaml
 important_commands.txt
 node_modules/
 build
