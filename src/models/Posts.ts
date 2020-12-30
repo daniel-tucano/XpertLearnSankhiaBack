@@ -4,6 +4,7 @@ export interface PostType extends Document {
     likes: { creatorID: string }[]
     creatorUid: string
     content: { type: 'video' | 'image'; payload: string }
+    description: string
     createdAt: Date
 }
 
@@ -20,6 +21,10 @@ const PostMongoSchema = new mongoose.Schema(
                 $type: String,
                 required: true,
             },
+        },
+        description: {
+            type: String,
+            required: true,
         },
         createdAt: Date,
     },
