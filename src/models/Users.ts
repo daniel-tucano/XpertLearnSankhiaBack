@@ -62,7 +62,7 @@ const UserMongoSchema = new mongoose.Schema({
         required: true,
     },
     comments: {
-        type: String,
+        type: [String],
         required: true,
     },
     joinDate: {

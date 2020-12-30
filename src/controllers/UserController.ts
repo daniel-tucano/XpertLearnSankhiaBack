@@ -38,6 +38,7 @@ module.exports = {
     },
 
     async store(req: Request<any, any, UserType>, res: Response) {
+        req.body.comments = []
         req.body.birthDate = new Date(req.body.birthDate)
         const user = await User.create({ ...req.body, joinDate: new Date() })
 
