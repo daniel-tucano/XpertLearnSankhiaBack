@@ -3,7 +3,7 @@ import mongoose, { Document } from 'mongoose'
 export interface PostType extends Document {
     likes: { creatorID: string }[]
     creatorUid: string
-    content: { type: 'video' | 'image'; payload: string }
+    content: { type: 'video' | 'image'; payload: string[] }
     description: string
     createdAt: Date
 }
@@ -18,7 +18,7 @@ const PostMongoSchema = new mongoose.Schema(
                 required: true,
             },
             payload: {
-                $type: String,
+                $type: [String],
                 required: true,
             },
         },
