@@ -256,7 +256,7 @@ module.exports = {
 
         await uploadResponse[0].makePublic()
 
-        const url = `https://storage.googleapis.com/xpert-sankhia/${req.params.id}%2F${req.file.filename}`
+        const url = `https://storage.googleapis.com/xpert-sankhia.appspot.com/${req.params.id}%2F${req.file.filename}`
 
         // Data to be updated on user to reflect the new image upload
         const updateData = {
