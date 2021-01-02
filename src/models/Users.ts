@@ -11,7 +11,12 @@ export interface UserType extends Document {
         path?: string
         url?: string
     }
+    backgroundImg?: {
+        path?: string
+        url?: string
+    }
     originalProfilePicPath?: string
+    originalBackgroundImgPath?: string
     description: string
     comments: string[]
     joinDate: Date
@@ -53,7 +58,22 @@ const UserMongoSchema = new mongoose.Schema({
         },
         required: false,
     },
+    backgroundImg: {
+        path: {
+            type: String,
+            required: false,
+        },
+        url: {
+            type: String,
+            required: false,
+        },
+        required: false,
+    },
     originalProfilePicPath: {
+        type: String,
+        required: false,
+    },
+    originalBackgroundImgPath: {
         type: String,
         required: false,
     },

@@ -25,5 +25,10 @@ privateRoutes.post(
     multerImg('profile-image'),
     UserController.uploadProfilePic
 )
+privateRoutes.post(
+    '/users/upload/background-image/:id',
+    multerImg('background-image'),
+    UserController.uploadBackgroundImg
+)
 
 export default privateRoutes
