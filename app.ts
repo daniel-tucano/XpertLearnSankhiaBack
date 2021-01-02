@@ -100,6 +100,7 @@ export class AppController {
         ) {
             this.fireApp = admin.initializeApp({
                 credential: admin.credential.applicationDefault(),
+                storageBucket: 'xpert-sankhia.appspot.com',
             })
         }
     }
